@@ -16,7 +16,7 @@
 <body>
     <!-- nav bar -->
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand bg-dark" href="#">IPTGram</a>
+        <a class="navbar-brand bg-dark" href="/Home/Index/">IPTGram</a>
         <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -80,13 +80,9 @@
         });
     function create(data, index) {
         var myDate = new Date(data.postedAt);
-
-        var a = $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + data.id+'/image', function (data) {
-            return data;
-        });
         $('#cards').append(`<!--card -->
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="${a}" alt="Card image cap">
+                <img class="card-img-top" src="https://ipt-ti2-iptgram.azurewebsites.net/api/posts/ ${data.id} /image" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">${data.user.userName}</h5>
                         <p class="card-text">${myDate.toLocaleString()}&nbsp;&nbsp;&nbsp; 👍 ${data.likes} </p>

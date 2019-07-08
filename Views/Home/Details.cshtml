@@ -14,7 +14,7 @@
 <body>
     <!-- nav bar -->
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand bg-dark" href="#">IPTGram</a>
+        <a class="navbar-brand bg-dark" href="/Home/Index/">IPTGram</a>
     </nav>
     
 
@@ -51,8 +51,9 @@
 </body>
 
 <script>
-    var id = @ViewBag.TotalStudents;;
+    var id = @ViewBag.id ;
     function index() {
+        $("#image").attr("src", 'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/image');
         $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id, function (data) {
             var myDate = new Date(data.postedAt);
             $('#user').html(`${data.user.userName} &nbsp&nbsp&nbsp ${myDate.toLocaleString()}`);
@@ -64,11 +65,10 @@
             data.forEach(create);
 
         });
-        $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/5/image', function (data) {
-            console.log(data);
-            console.log("image");
+       /* $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/image', function (data) {
+            console.log(Object.keys(data));
             //$("#image").attr("src", data);
-        });
+        });*/
     }
     function create(data, index) {
         var myDate = new Date(data.postedAt);
