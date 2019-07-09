@@ -56,9 +56,9 @@
         $("#image").attr("src", 'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/image');
         $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id, function (data) {
             var myDate = new Date(data.postedAt);
-            $('#user').html(`${data.user.userName} &nbsp&nbsp&nbsp ${myDate.toLocaleString()}`);
-            $('#Legenda').html(`${data.caption}`);
-            $('#likes').html(`${data.likes}`);
+            $('#user').text(`${data.user.userName} &nbsp&nbsp&nbsp ${myDate.toLocaleString()}`);
+            $('#Legenda').text(data.caption);
+            $('#likes').text(`${data.likes}`);
             //$('#comments').html(`${data.likes}`);
         });
         $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/comments', function (data) {
