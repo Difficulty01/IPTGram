@@ -60,25 +60,25 @@
     function index() {
         $("#image").attr("src", 'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/image');//dá set ao atributo src da imagem do post
         $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id, function (data) {
-            var myDate = new Date(data.postedAt);
-            $('#user').text(`${data.user.userName} &nbsp&nbsp&nbsp ${myDate.toLocaleString()}`);
-            $('#Legenda').text(data.caption);
-            $('#likes').text(`${data.likes}`);
+            var myDate = new Date(data.postedAt);//cria um objeto Date para transformar UTC para o formato DD/MM/AAAA, HH,MM,SS
+            $('#user').text(`${data.user.userName} &nbsp&nbsp&nbsp ${myDate.toLocaleString()}`);//dá set ao nome do user e á data do post
+            $('#Legenda').text(data.caption);//adiciona a caption do post
+            $('#likes').text(`${data.likes}`);//numero de likes
         });
         $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/comments', function (data) {
-            data.forEach(create);
+            data.forEach(create);//para cada comment
 
         });
     }
-    function create(data, index) {
-        var myDate = new Date(data.postedAt);
+    function create(data, index) {//função para criar uma card
+        var myDate = new Date(data.postedAt);//cria um objeto Date para transformar UTC para o formato DD/MM/AAAA, HH,MM,SS
         $('#comments').append(`<div class="card border-dark mb-3" style="max-width: 18rem;">
                         <div class="card-header">${data.user.name}</div>
                         <div class="card-body text-dark">
-                            <p class="card-text">${myDate.toLocaleString()}</p>
+                            <p class="card-text">${myDate.toLocaleString()}</p>//
                             <h5 class="card-title">${data.text}</h5>
                         </div>
-                    </div>`);
+                    </div>`);//criar a card do comentário
     }
     index();
 </script></html>
