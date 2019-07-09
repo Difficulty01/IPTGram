@@ -24,6 +24,7 @@ function createDetails(data, index) {
 }
 
 function Default() {
+    $('#Data_Show').html(template = $("#Default").clone());
     $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/', function (data) {
         data.forEach(createDefault);
     });
