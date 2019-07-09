@@ -20,55 +20,55 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-1" >
+            <div class="col-sm-1">
+                <!-- Coluna esquerda-->
                 <!-- anuncio -->
                 anuncio
             </div>
-            <div class="col-9">
+            <div class="col-10">
+                <!-- Coluna central-->
                 <div class="mx-auto" style="width: 500px;margin-top:50px;">
-                    <img src="" id="image" class="img-fluid" alt="Responsive image" />
+                    <!--Parte estática do detalhes-->
+                    <img src="" id="image" class="img-fluid" alt="Responsive image" /><!--imagem do post-->
                     <br />
-                    <span id="user"></span><br />
+                    <span id="user"></span><br /><!--Nome do Utilizador-->
                     <span id="Legenda">
+                        <!--Legenda do post-->
                     </span><br />
                     <span>
-                               👍
-                    </span>
+                        👍
+                    </span><!--likes-->
                     <span id="likes"></span>
                     <br />
                     <br />
                     <br />
-                    <div id="comments"></div>
-                    
+                    <div id="comments"></div><!--div para agrupar e escrever comentários-->
+
                 </div>
             </div>
             <div class="col-sm-1">
-                    <!-- anuncio -->
-                    anuncio
+                <!-- Coluna direita-->
+                <!-- anuncio -->
+                anuncio
             </div>
         </div>
     </div>
 </body>
 
 <script>
-    var id = @ViewBag.id ;
+    var id = @ViewBag.id ;//recebe da viewbag o id
     function index() {
-        $("#image").attr("src", 'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/image');
+        $("#image").attr("src", 'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/image');//dá set ao atributo src da imagem do post
         $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id, function (data) {
             var myDate = new Date(data.postedAt);
             $('#user').text(`${data.user.userName} &nbsp&nbsp&nbsp ${myDate.toLocaleString()}`);
             $('#Legenda').text(data.caption);
             $('#likes').text(`${data.likes}`);
-            //$('#comments').html(`${data.likes}`);
         });
         $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/comments', function (data) {
             data.forEach(create);
 
         });
-       /* $.getJSON('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id + '/image', function (data) {
-            console.log(Object.keys(data));
-            //$("#image").attr("src", data);
-        });*/
     }
     function create(data, index) {
         var myDate = new Date(data.postedAt);

@@ -14,6 +14,8 @@ namespace IPTGram.Controllers
         [HttpGet()]
         public IActionResult Details(int ?id)
         {
+            if(id==null)
+                return View("Index");
             ViewBag.id = id;
             return View();
         }
